@@ -17,21 +17,28 @@ for (int index = 0; index < listSize; index++)
 }
 void dna_to_rna(char list[], int listSize){
     for (int index = 0; index < listSize; index++){
-        if (list[index] = 'A'){
-            list[index] = 'G';
+        if (list[index] == 'A'){
+            list[index] = 'U';
         }
-        else if (list[index] = 'G'){
-            list[index] = 'A';
-        }
-        else if (list[index] = 'C'){
-            list[index] = 'T';
-        }
-        else if (list[index] = 'T'){
+        else if (list[index] == 'G'){
             list[index] = 'C';
         }
-        else
-        list.remove(list[index])
-
+        else if (list[index] == 'C'){
+            list[index] = 'G';
+        }
+        else if (list[index] == 'T'){
+            list[index] = 'A';
+        }
+        else{
+            for(int i = index; i < listSize; i++){
+                list[index] = list[index + 1];
+            }
+            listSize = listSize -1;
+        }
+    }
+    for (int i = 0; i<listSize; i++)
+    {
+        cout<<list[i];
     }
 }
 
@@ -54,6 +61,15 @@ int main(){
             highestIndividual = i;
         }
     }
-    cout<<"salesman #"<<highestIndividual+1<<" sold the most cars"<<"("<<highest<<" cars)";
+    cout<<"salesman #"<<highestIndividual+1<<" sold the most cars"<<"("<<highest<<" cars)"<<endl;
+    string DNA;
+    cout<<"DNA enter:";
+    cin>>DNA;
+    int n = DNA.length();
+    char DNAArray[n];
+    char DNAArray1[n];
+    for (int i = 0; i < n; i++)
+        DNAArray1[i] = DNA[i];
+    dna_to_rna(DNAArray1, n);
     return 0;
 }
